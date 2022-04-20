@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace BackEnd.Model
 {
@@ -10,6 +11,9 @@ namespace BackEnd.Model
 
         [JsonProperty("Email")]
         public string Email { get; set; }
+
+        [JsonProperty("Username")]
+        public string Username { get; set; }
 
         [JsonProperty("PasswordHash")]
         public byte[] PasswordHash { get; set; }

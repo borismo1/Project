@@ -6,15 +6,15 @@ namespace BackEnd
     public class DataContext : DbContext
     {
 
-        public DataContext(DbContextOptions<DataContext> options) 
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         
         
         }
 
 
-        public DbSet<IUser> MyProperty { get; set; }
-
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
 
     }
 }

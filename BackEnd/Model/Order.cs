@@ -7,7 +7,7 @@ namespace BackEnd.Model
     {
         public Guid OrderId { get; set; }
         
-        public Guid CustomerID { get; set; }
+        public Customer Customer { get; set; }
 
         public DateTime OrderTimeStamp { get; set; }
 
@@ -21,7 +21,7 @@ namespace BackEnd.Model
         {
             OrderId = Guid.NewGuid();
             OrderTimeStamp = DateTime.Now;
-            CustomerID = cart.CustomerID;
+            Customer = cart.Customer;
             Price = cart.TotalPrice;
             Items = cart.Items;
         }

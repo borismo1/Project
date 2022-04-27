@@ -1,3 +1,4 @@
+using BackEnd.Data;
 using BackEnd.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +37,9 @@ namespace BackEnd
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BackEnd", Version = "v1" });
             });
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<ICustomerService,CustomerService>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

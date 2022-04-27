@@ -1,6 +1,7 @@
 ﻿using BackEnd.Model;
 using BackEnd.Service;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace BackEnd.Controllers
@@ -9,17 +10,20 @@ namespace BackEnd.Controllers
     [Route("controller")]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ICustomerService _customerService;
 
         [HttpGet("Get_By_{id}")]
-        public async Task<ActionResult<IUser>> Get(int id) 
+        public async Task<ActionResult<ServiceResponce<IUser>>> Get(Guid id) 
         {
-            return Ok(); //async
+            //ServiceResponce<IUser> serviceResponce = new ServiceResponce<IUser>();
+
+
+            return Ok(await _customerService.GetCustomerById(id));
         }
 
-        public UserController(IUserService userService)
+        public UserController(ICustomerService userService)
         {
-            _userService = userService;
+            _customerService = userService;
         }
 
     }

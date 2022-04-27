@@ -6,7 +6,7 @@ namespace BackEnd.Model
 {
     public class ShopingCart
     {
-        public Guid CustomerID { get; set; }
+        public Customer Customer { get; set; }
 
         public List<Item> Items { get; set; }
 
@@ -18,9 +18,9 @@ namespace BackEnd.Model
             }
         }
 
-        public ShopingCart(Guid customerID) 
+        public ShopingCart(Customer customer) 
         {
-            CustomerID = customerID;
+            Customer = customer;
             Items = new List<Item>();
         }
     }

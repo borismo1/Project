@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BackEnd.DTOs.User;
 using BackEnd.Model;
 
 namespace BackEnd
@@ -8,7 +9,9 @@ namespace BackEnd
 
         public AutoMapperProfile()
         {
-            //CreateMap<IUser, UserDto>();
+            CreateMap<Customer, GetCustomerDto>();
+            CreateMap<Customer, AddCustomerDto>();
+            CreateMap<Customer, UpdateCustomerDto>();
         }
 
     }

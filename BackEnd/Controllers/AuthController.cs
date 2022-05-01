@@ -1,5 +1,5 @@
 ﻿using BackEnd.Data;
-using BackEnd.DTOs.User;
+using BackEnd.DTOs.Customer;
 using BackEnd.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,14 +19,40 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<ActionResult<ServiceResponce<Guid>>> Register(CustomerRegisterDto request) 
+        public async Task<ActionResult<ServiceResponce<int>>> Register(RegisterCustomerDto request) 
         {
-            var response = await _authRepo.Register(new Customer {Username = request.Username},request.Password);
+            var response = await _authRepo.Register
+            (
+                new Customer 
+                {
+                    Username = request.Username,
+                    Email = request.Email
+                },
+                request.Password
+            );
         
             if(!response.Success)
                 return BadRequest(response);
 
+            return Ok(response);
+        }
+
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<ServiceResponce<string>>> Login(LoginCustomerDto request)
+        {
+            var response = await _authRepo.Login(request.Username, request.Password);
+
+            if (!response.Success)
+                return BadRequest(response);
+
             return Ok(request);
+        }
+
+        [HttpGet("TestGet")]
+        public ActionResult TestGet()
+        {
+            return Ok();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BackEnd.Model
+namespace FrontEnd.Model
 {
     public class ShopingCart
     {

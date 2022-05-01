@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BackEnd.Model
+namespace FrontEnd.Model
 {
     public class Order
     {
@@ -17,5 +17,13 @@ namespace BackEnd.Model
 
         private Order() { }
 
+        public Order(ShopingCart cart)
+        {
+            OrderId = Guid.NewGuid();
+            OrderTimeStamp = DateTime.Now;
+            Customer = cart.Customer;
+            Price = cart.TotalPrice;
+            Items = cart.Items;
+        }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
-using BackEnd.DTOs.User;
+using BackEnd.DTOs.Customer;
 using BackEnd.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BackEnd.Service
@@ -13,12 +15,16 @@ namespace BackEnd.Service
     {
         private readonly IMapper _mapper;
         private readonly DataContext _dataContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CustomerService(IMapper mapper, DataContext context) 
+        public CustomerService(IMapper mapper, DataContext context, IHttpContextAccessor httpContextAccessor) 
         {
             _mapper = mapper;
             _dataContext = context;
+            _httpContextAccessor = httpContextAccessor;
         }
+
+        private Guid GetUserId() => Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
         public async Task<ServiceResponce<GetCustomerDto>> AddCustomer(AddCustomerDto newCusomter)
         {
@@ -45,7 +51,7 @@ namespace BackEnd.Service
             return responce;       
         }
 
-        public async Task<ServiceResponce<GetCustomerDto>> GetCustomerById(Guid Id)
+        public async Task<ServiceResponce<GetCustomerDto>> GetCustomerById(int Id)
         {
             ServiceResponce<GetCustomerDto> responce = new ServiceResponce<GetCustomerDto>();
             Customer CustomersDb = await _dataContext.Customers.FirstOrDefaultAsync(c => c.Id == Id);

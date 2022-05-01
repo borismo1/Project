@@ -1,24 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-
+﻿
 namespace BackEnd.Model
 {
     public abstract class IUser
     {
-        [JsonProperty("Id")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        [JsonProperty("Email")]
         public string Email { get; set; }
 
-        [JsonProperty("Username")]
         public string Username { get; set; }
 
-        [JsonProperty("PasswordHash")]
         public byte[] PasswordHash { get; set; }
 
-        [JsonProperty("PasswordSalt")]
         public byte[] PasswordSalt { get; set; }
     }
 }

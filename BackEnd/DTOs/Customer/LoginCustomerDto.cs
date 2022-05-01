@@ -1,6 +1,6 @@
-﻿namespace BackEnd.DTOs.User
+﻿namespace BackEnd.DTOs.Customer
 {
-    public class CustomerRegisterDto
+    public class LoginCustomerDto
     {
         public string Username { get; set; }
 

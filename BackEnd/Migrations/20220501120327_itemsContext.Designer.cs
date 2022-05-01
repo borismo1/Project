@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220420090154_InitialCreate_2")]
-    partial class InitialCreate_2
+    [Migration("20220501120327_itemsContext")]
+    partial class itemsContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,10 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Administrator", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -46,9 +47,10 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -62,9 +64,6 @@ namespace BackEnd.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isBlocked")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
@@ -72,9 +71,10 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Item", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -110,8 +110,8 @@ namespace BackEnd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CustomerID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("OrderTimeStamp")
                         .HasColumnType("datetime2");
@@ -121,9 +121,9 @@ namespace BackEnd.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("CustomerId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BackEnd.Model.Item", b =>
@@ -135,16 +135,11 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Order", b =>
                 {
-                    b.HasOne("BackEnd.Model.Customer", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.HasOne("BackEnd.Model.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
 
-            modelBuilder.Entity("BackEnd.Model.Customer", b =>
-                {
-                    b.Navigation("Orders");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("BackEnd.Model.Order", b =>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FrontEnd.Pages;
+using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +11,11 @@ namespace FrontEnd
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            string accessToken = Preferences.Get("accessToken", string.Empty);
+            if (string.IsNullOrWhiteSpace(accessToken))
+                MainPage = new NavigationPage(new SignupPage());
+            else
+                MainPage = new NavigationPage( new HomePage());
         }
 
         protected override void OnStart()

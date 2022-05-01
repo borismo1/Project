@@ -4,7 +4,7 @@
              x:Class="FrontEnd.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+        <!--<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
@@ -18,7 +18,16 @@
                     </FormattedString.Spans>
                 </FormattedString>
             </Label.FormattedText>
-        </Label>
+        </Label>-->
+        <Entry Placeholder="Enter User Name"
+               x:Name="EnterUserName"/>
+        <Button Text="Save"
+                x:Name="BtnSave"
+                Clicked="BtnSave_Clicked"/>
+        <Button Text="Retrieve"
+                x:Name="BtnRetrieve"
+                Clicked="BtnRetrieve_Clicked"/>
+        <Label  x:Name="LblUserName"/>
     </StackLayout>
 
 </ContentPage>

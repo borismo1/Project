@@ -1,4 +1,4 @@
-﻿using BackEnd.DTOs.User;
+﻿using BackEnd.DTOs.Customer;
 using BackEnd.Model;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BackEnd.Service
     {
         Task<ServiceResponce<List<GetCustomerDto>>> GetAllCustomers();
 
-        Task<ServiceResponce<GetCustomerDto>> GetCustomerById(Guid id);
+        Task<ServiceResponce<GetCustomerDto>> GetCustomerById(int id);
 
         Task<ServiceResponce<GetCustomerDto>> AddCustomer(AddCustomerDto newCusomter);
 

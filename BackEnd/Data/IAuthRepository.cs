@@ -7,7 +7,7 @@ namespace BackEnd.Data
     public interface IAuthRepository
     {
 
-        Task<ServiceResponce<Guid>> Register(Customer customer, string password);
+        Task<ServiceResponce<int>> Register(Customer customer, string password);
 
         Task<ServiceResponce<string>> Login(string username, string password);
 

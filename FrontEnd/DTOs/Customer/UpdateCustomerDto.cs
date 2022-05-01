@@ -1,4 +1,4 @@
-﻿namespace BackEnd.DTOs.User
+﻿namespace FrontEnd.DTOs.Customer
 {
     public class UpdateCustomerDto
     {

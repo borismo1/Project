@@ -1,4 +1,4 @@
-﻿namespace BackEnd.DTOs.User
+﻿namespace BackEnd.DTOs.Customer
 {
     public class AddCustomerDto
     {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using BackEnd.DTOs.User;
+using BackEnd.DTOs.Customer;
+using BackEnd.DTOs.Item;
 using BackEnd.Model;
 
 namespace BackEnd
@@ -12,6 +13,10 @@ namespace BackEnd
             CreateMap<Customer, GetCustomerDto>();
             CreateMap<Customer, AddCustomerDto>();
             CreateMap<Customer, UpdateCustomerDto>();
+            CreateMap<Customer, LoginCustomerDto>();
+            CreateMap<Customer, RegisterCustomerDto>();
+
+            CreateMap<Item, GetItemDto>();
         }
 
     }

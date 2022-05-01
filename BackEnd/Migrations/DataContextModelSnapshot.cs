@@ -21,9 +21,10 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Administrator", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -44,9 +45,10 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -60,9 +62,6 @@ namespace BackEnd.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isBlocked")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
@@ -70,9 +69,10 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("BackEnd.Model.Item", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -108,8 +108,8 @@ namespace BackEnd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("OrderTimeStamp")
                         .HasColumnType("datetime2");
@@ -134,15 +134,10 @@ namespace BackEnd.Migrations
             modelBuilder.Entity("BackEnd.Model.Order", b =>
                 {
                     b.HasOne("BackEnd.Model.Customer", "Customer")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("BackEnd.Model.Customer", b =>
-                {
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("BackEnd.Model.Order", b =>

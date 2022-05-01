@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BackEnd.Model
+namespace FrontEnd.Model
 {
     public class Item
     {
@@ -10,7 +10,7 @@ namespace BackEnd.Model
 
         public string Description { get; set; }
 
-        public byte[] Image { get; set; }
+        public string ImageUrl { get; set; }
 
         public double Price { get; set; }
 

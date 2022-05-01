@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace BackEnd.Model
+﻿namespace BackEnd.DTOs.Item
 {
-    public class Item
+    public class GetItemDto
     {
         public int Id { get; set; }
 
@@ -14,10 +12,6 @@ namespace BackEnd.Model
 
         public double Price { get; set; }
 
-        public bool IsTrending { get; set; }
-
         public int Category { get; set; }
-
-        public int Inventory { get;}
     }
 }

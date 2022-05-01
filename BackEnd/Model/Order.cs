@@ -5,7 +5,7 @@ namespace BackEnd.Model
 {
     public class Order
     {
-        public Guid OrderId { get; set; }
+        public int Id { get; set; }
         
         public Customer Customer { get; set; }
 

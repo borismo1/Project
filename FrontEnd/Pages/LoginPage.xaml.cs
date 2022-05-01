@@ -23,9 +23,9 @@ namespace FrontEnd.Pages
                 EntUserName.Text = userName;
         }
 
-        private void TapBack_Tapped(object sender, EventArgs e)
+        private async void TapBack_Tapped(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            await Navigation.PopModalAsync();
         }
 
         private async void TapLogin_Tapped(object sender, EventArgs e)

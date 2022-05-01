@@ -142,7 +142,8 @@
                                     <StackLayout Spacing="5"
                                                  Orientation="Vertical">
                                         <Image Aspect="Fill"
-                                               HeightRequest="120" />
+                                               HeightRequest="120" 
+                                               Source ="{Binding Image}"/>
                                         <Label TextColor="#2C2C2C"
                                                Text="{Binding Name}"/>
                                         <Label TextColor="#FA6400"

@@ -118,7 +118,6 @@ namespace BackEnd.Data
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
-
             return tokenHandler.WriteToken(token);
         }
 

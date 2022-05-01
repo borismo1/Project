@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -51,15 +52,20 @@ namespace FrontEnd.Service
 
             ServiceResponce<string> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<string>, LoginCustomerDto>(loginUserRoute, customer);
 
-            if (resp.Success)
+            if (resp.Success) 
             {
-                Token token = JsonConvert.DeserializeObject<Token>(resp.Data);
-                Preferences.Set("accessToken", token.AccessToken);
-                Preferences.Set("userName", token.UserName);
+
+                JsonWebToken token = new JsonWebToken(resp.Data);
+
+                Preferences.Set("accessToken", token.GetRawToken);
+                Preferences.Set("userName", token.Payload.UserName);
+                Preferences.Set("expirationDate", token.Payload.ExpirationDate);
             }
 
             return resp;
         }
+
+
 
     }
 }

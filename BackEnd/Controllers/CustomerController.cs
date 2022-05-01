@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CustomerController : ControllerBase
@@ -20,7 +20,7 @@ namespace BackEnd.Controllers
         public async Task<ActionResult<ServiceResponce<IUser>>> Get(int id) 
         {
             //ServiceResponce<IUser> serviceResponce = new ServiceResponce<IUser>();
-            //int _id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            int _id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
             return Ok(await _customerService.GetCustomerById(id));
         }

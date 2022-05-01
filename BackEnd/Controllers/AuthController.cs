@@ -46,13 +46,8 @@ namespace BackEnd.Controllers
             if (!response.Success)
                 return BadRequest(response);
 
-            return Ok(request);
+            return Ok(response);
         }
 
-        [HttpGet("TestGet")]
-        public ActionResult TestGet()
-        {
-            return Ok();
-        }
     }
 }

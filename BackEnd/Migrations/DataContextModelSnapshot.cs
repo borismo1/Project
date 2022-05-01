@@ -80,8 +80,8 @@ namespace BackEnd.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("IsTrending")
                         .HasColumnType("bit");
@@ -89,8 +89,8 @@ namespace BackEnd.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -99,14 +99,15 @@ namespace BackEnd.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("BackEnd.Model.Order", b =>
                 {
-                    b.Property<Guid>("OrderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
@@ -117,7 +118,7 @@ namespace BackEnd.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 

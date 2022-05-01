@@ -35,7 +35,7 @@
             <Entry Placeholder="UserName"
                    Margin="20,10,20,10"
                    x:Name="EntUserName"
-                   Keyboard="UserName" />
+                   Keyboard="Text" />
             <Entry Placeholder="Password"
                    Margin="20,10,20,10"
                    x:Name="EntPassword"

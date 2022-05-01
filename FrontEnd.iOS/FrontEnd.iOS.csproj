@@ -136,4 +136,40 @@
       <Name>FrontEnd</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\basket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\carticon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\leftarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menuicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rightarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shape.png" />
+  </ItemGroup>
 </Project>

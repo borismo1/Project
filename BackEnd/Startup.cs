@@ -51,6 +51,7 @@ namespace BackEnd
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ICustomerService,CustomerService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IItemService, ItemService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

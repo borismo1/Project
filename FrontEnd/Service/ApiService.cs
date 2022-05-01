@@ -1,5 +1,6 @@
 ﻿using FronEnd.Model;
 using FrontEnd.DTOs.Customer;
+using FrontEnd.DTOs.Item;
 using FrontEnd.Model;
 using FrontEnd.Models;
 using Newtonsoft.Json;
@@ -15,12 +16,17 @@ namespace FrontEnd.Service
 {
     public static class ApiService
     {
-        public static async Task<ServiceResponce<List<Item>>> GetTrendingItems() 
+        public static async Task<ServiceResponce<List<GetItemDto>>> GetTrendingItems() 
         {
             string trendingProductsRoute = "/Item/GetTrending";
-            return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<Item>>>(trendingProductsRoute);
+            return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<GetItemDto>>>(trendingProductsRoute);
         }
 
+        public async static Task<ServiceResponce<List<Category>>> GetCategories()
+        {
+            string categoriesRoute = "/Category";
+            return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<Category>>>(categoriesRoute);
+        }
 
         public static async Task<ServiceResponce<int>> RegisterUser(string username, string email, string password) 
         {

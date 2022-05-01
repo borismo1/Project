@@ -10,7 +10,7 @@ namespace BackEnd.Model
 
         public string Description { get; set; }
 
-        public byte[] Image { get; set; }
+        public byte[] ImageBytes { get; set; }
 
         public double Price { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEnd.DTOs.Item;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace FrontEnd.Model
     {
         public Customer Customer { get; set; }
 
-        public List<Item> Items { get; set; }
+        public List<GetItemDto> Items { get; set; }
 
         public double TotalPrice 
         {
@@ -21,7 +22,7 @@ namespace FrontEnd.Model
         public ShopingCart(Customer customer) 
         {
             Customer = customer;
-            Items = new List<Item>();
+            Items = new List<GetItemDto>();
         }
     }
 }

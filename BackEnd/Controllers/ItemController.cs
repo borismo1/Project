@@ -30,7 +30,7 @@ namespace BackEnd.Controllers
             return Ok(await _itemService.GetCategoryItems(categoryId));
         }
 
-        [HttpGet("Tranding")]
+        [HttpGet("GetTrending")]
         public async Task<ActionResult<ServiceResponce<List<GetItemDto>>>> GetItemsFromCategory()
         {
             return Ok(await _itemService.GetTrandingItems());

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEnd.DTOs.Item;
+using System;
 using System.Collections.Generic;
 
 namespace FrontEnd.Model
@@ -13,7 +14,7 @@ namespace FrontEnd.Model
 
         public double Price { get; set; }
 
-        public List<Item> Items { get; set; }
+        public List<GetItemDto> Items { get; set; }
 
         private Order() { }
 

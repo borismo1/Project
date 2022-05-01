@@ -25,7 +25,7 @@ namespace BackEnd.Utils
                     Category = category,
                     Description = $"Description-{counter}",
                     IsTrending = rand.NextDouble() >= 0.5,
-                    Image = File.ReadAllBytes(image),
+                    ImageBytes = File.ReadAllBytes(image),
                     Name = $"Name-{counter++}",
                     Price = (rand.NextDouble() * 5)
                 };

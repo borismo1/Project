@@ -2,7 +2,7 @@
 {
     public class Category
     {
-        public string ImageUrl { get; set; }
+        public byte[] ImageBytes { get; set; }
 
         public string Name { get; set; }
 

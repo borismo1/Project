@@ -92,7 +92,7 @@
                                    FontAttributes="Bold"
                                    FontSize="Title"
                                    TextColor="#2C2C2C"/>
-                            <CollectionView  x:Name="CvCategories"
+                            <CollectionView  x:Name="CategoriesList"
                                              HeightRequest="200"
                                              SelectionMode="Single">
                                 <CollectionView.ItemsLayout>
@@ -114,11 +114,13 @@
                                                            HorizontalOptions="Center">
                                                         <Image Aspect="AspectFit"
                                                                HorizontalOptions="FillAndExpand"
-                                                               VerticalOptions="FillAndExpand" />
+                                                               VerticalOptions="FillAndExpand" 
+                                                               Source="{Binding Image}"/>
                                                     </Frame>
                                                     <Label TextColor="#2C2C2C"
                                                            HorizontalTextAlignment="Center"
-                                                           FontSize="Medium" />
+                                                           FontSize="Medium" 
+                                                           Text="{Binding Name}}"/>
                                                 </StackLayout>
                                             </Frame>
                                         </StackLayout>

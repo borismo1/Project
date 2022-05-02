@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,18 +18,28 @@ namespace FrontEnd.Pages
     public partial class HomePage : ContentPage
     {
         public ObservableCollection<GetItemDto> TrandingProductCollection;
-
+        public ObservableCollection<Category> CategoriesCollection;
 
         public HomePage()
         {
             InitializeComponent();
             GetTrendingProducts();
             GetCategories();
+
+            LblUserName.Text = Preferences.Get("userName", string.Empty);
+            LblTotalItems.Text = "0";
         }
 
         private async void GetCategories()
         {
             ServiceResponce<List<Category>> resp = await ApiService.GetCategories();
+
+            if (resp.Success)
+                CategoriesCollection = new ObservableCollection<Category>(resp.Data);
+            else
+                CategoriesCollection = new ObservableCollection<Category>();
+
+            CategoriesList.ItemsSource = CategoriesCollection;
         }
 
         private async void GetTrendingProducts()

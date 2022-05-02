@@ -36,7 +36,28 @@ namespace BackEnd.Utils
             await context.Items.AddRangeAsync(Items.ToArray());
 
             await context.SaveChangesAsync();
-        } 
+        }
+
+        public static async Task SeedDatabaseWithCategories(DataContext context, Dictionary<string, int> imageVsId)
+        {
+            List<Category> categories = new List<Category>();
+
+            Random rand = new Random();
+            foreach (var KeyValuePair in imageVsId)
+            {
+                Category cat = new Category()
+                {
+                    //Id = KeyValuePair.Value,
+                    Name = Path.GetFileNameWithoutExtension(KeyValuePair.Key),
+                    ImageBytes = File.ReadAllBytes(KeyValuePair.Key)
+                };
+
+                categories.Add(cat);
+            }
+
+            await context.Categories.AddRangeAsync(categories.ToArray());
+            await context.SaveChangesAsync();
+        }
 
     }
 }

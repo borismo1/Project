@@ -28,6 +28,12 @@ namespace FrontEnd.Service
             return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<Category>>>(categoriesRoute);
         }
 
+        public async static Task<ServiceResponce<List<GetItemDto>>> GetProductsFromCategory(int categoryId)
+        {
+            string categoriesRoute = $"/Item/Category/{categoryId}";
+            return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<GetItemDto>>>(categoriesRoute);
+        }
+
         public static async Task<ServiceResponce<int>> RegisterUser(string username, string email, string password) 
         {
             string registerUserRoute = "/Auth/Register";

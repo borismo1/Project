@@ -64,6 +64,17 @@ namespace FrontEnd.Pages
         {
             await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
             GridOverlay.IsVisible = false;
+        }
+
+        private async void CategoriesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Category selectedCategory = e.CurrentSelection.FirstOrDefault() as Category;
+
+            if (selectedCategory != null) 
+            {
+                await Navigation.PushModalAsync(new ProductListPage(selectedCategory.Id,selectedCategory.Name));
+                ((CollectionView)sender).SelectedItem = null;
+            }
 
         }
     }

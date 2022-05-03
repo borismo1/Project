@@ -5,6 +5,6 @@ namespace FrontEnd.Model
 {
     public class Customer : IUser
     {
-        ShopingCart ShopingCart { get; set; }
+
     }
 }

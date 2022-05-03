@@ -31,7 +31,8 @@
                        HorizontalTextAlignment="Center" />
             </Grid>
             <CollectionView x:Name="CategoryProducts"
-                            SelectionMode="Single">
+                            SelectionMode="Single"
+                            SelectionChanged="CategoryProducts_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                                      Span="2"

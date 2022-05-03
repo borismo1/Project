@@ -41,5 +41,17 @@ namespace FrontEnd.Pages
 
             CategoryProducts.ItemsSource = Products;
         }
+
+        private void CategoryProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetItemDto selectedProduct = e.CurrentSelection.FirstOrDefault() as GetItemDto;
+            if (selectedProduct != null)
+            {
+                Navigation.PushModalAsync(new ProductDetailPage(selectedProduct));
+                ((CollectionView)sender).SelectedItem = null;
+            }
+
+
+        }
     }
 }

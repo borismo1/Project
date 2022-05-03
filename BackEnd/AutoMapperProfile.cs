@@ -17,6 +17,8 @@ namespace BackEnd
             CreateMap<Customer, RegisterCustomerDto>();
 
             CreateMap<Item, GetItemDto>();
+
+            CreateMap<Order, FronEndOrderDto>();
         }
 
     }

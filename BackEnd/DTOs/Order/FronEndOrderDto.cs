@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BackEnd.Model
+namespace BackEnd.DTOs.Item
 {
-    public class Order
+    public class FronEndOrderDto
     {
-        public int Id { get; set; }
-        
+
         public int CustomerId { get; set; }
 
         public string CustomerFullName { get; set; }
@@ -20,6 +19,5 @@ namespace BackEnd.Model
         public int DeliveryAddress { get; set; }
 
         public string ContancPhoneNumber { get; set; }
-
     }
 }

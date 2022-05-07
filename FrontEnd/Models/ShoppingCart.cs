@@ -25,6 +25,14 @@ namespace FrontEnd.Model
             }
         }
 
+        public static string GetItemsIds 
+        {
+            get 
+            {
+                return string.Join(',', Items.Select(i => i.Id.ToString()));
+            }
+        }
+
         public static List<GetItemDto> GetAsGetItemDto 
         {
             get 

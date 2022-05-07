@@ -6,7 +6,7 @@ namespace BackEnd.Service
 {
     public interface IOrderService
     {
-        Task<ServiceResponce<List<Order>>> AddOrder();
+        Task<ServiceResponce<int>> AddOrder(Order order);
 
 
     }

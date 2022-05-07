@@ -95,5 +95,6 @@ namespace FrontEnd.Pages
         {
             await Navigation.PushModalAsync(new CartPage());
         }
+
     }
 }

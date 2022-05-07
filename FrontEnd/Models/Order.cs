@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BackEnd.Model
+namespace FrontEnd.Model
 {
     public class Order
     {

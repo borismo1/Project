@@ -181,7 +181,7 @@
                                Margin="20,2,20,20"
                                TextColor="White" />
                     </StackLayout>
-                    <StackLayout Spacing="30"
+                    <!--<StackLayout Spacing="30"
                                      Orientation="Horizontal"
                                      Margin="20,0,0,0">
                         <Image Source="order.png"
@@ -195,7 +195,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer x:Name="TapOrders" />
                         </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    </StackLayout>-->
                     <StackLayout Spacing="30"
                                      Orientation="Horizontal"
                                      Margin="20,0,0,0">
@@ -208,10 +208,10 @@
                                    VerticalTextAlignment="Center"
                                    FontSize="20" />
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapCart" />
+                            <TapGestureRecognizer x:Name="TapCart" Tapped="TapCartIcon_Tapped"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout Spacing="30"
+                    <!--<StackLayout Spacing="30"
                                      Orientation="Horizontal"
                                      Margin="20,0,0,0">
                         <Image Source="contact.png"
@@ -225,7 +225,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer x:Name="TapContact" />
                         </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    </StackLayout>-->
                     <StackLayout Spacing="30"
                                      Orientation="Horizontal"
                                      Margin="20,0,0,0">

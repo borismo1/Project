@@ -1,4 +1,6 @@
 ﻿using FronEnd.Model;
+using FrontEnd.DTOs.Item;
+using FrontEnd.Model;
 using FrontEnd.Service;
 using System;
 using System.Collections.Generic;
@@ -32,11 +34,15 @@ namespace FrontEnd.Pages
         {
             ServiceResponce<string> resp = await ApiService.LoginUser(EntUserName.Text, EntPassword.Text);
 
-            if (!resp.Success) 
+            if (!resp.Success)
                 await DisplayAlert("Failure", resp.Message, "Ok");
 
-            else
+            else 
+            {
+                ShoppingCart.Items = new List<ShoppingCartItemDto>();
                 Application.Current.MainPage = new NavigationPage(new HomePage());
+            }
+            
         }
     }
 }

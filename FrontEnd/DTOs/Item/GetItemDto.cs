@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Xamarin.Forms;
 
 namespace FrontEnd.DTOs.Item
@@ -24,5 +25,6 @@ namespace FrontEnd.DTOs.Item
                 return ImageSource.FromStream(() => new MemoryStream(ImageBytes));
             } 
         }
+
     }
 }

@@ -25,9 +25,6 @@ namespace FrontEnd.Pages
             InitializeComponent();
             GetTrendingProducts();
             GetCategories();
-
-            LblUserName.Text = Preferences.Get("userName", string.Empty);
-            LblTotalItems.Text = "0";
         }
 
         private async void GetCategories()
@@ -64,7 +61,49 @@ namespace FrontEnd.Pages
         {
             await SlMenu.TranslateTo(-250, 0, 400, Easing.Linear);
             GridOverlay.IsVisible = false;
+        }
 
+        private async void CategoriesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Category selectedCategory = e.CurrentSelection.FirstOrDefault() as Category;
+
+            if (selectedCategory != null) 
+            {
+                await Navigation.PushModalAsync(new ProductListPage(selectedCategory.Id,selectedCategory.Name));
+                ((CollectionView)sender).SelectedItem = null;
+            }
+        }
+
+        protected override void OnAppearing() 
+        {
+            LblUserName.Text = Preferences.Get("userName", string.Empty);
+            LblTotalItems.Text = ShoppingCart.ItemCount;
+        }
+
+        private async void TrandingProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetItemDto selectedCategory = e.CurrentSelection.FirstOrDefault() as GetItemDto;
+
+            if (selectedCategory != null)
+            {
+                await Navigation.PushModalAsync(new ProductDetailPage(selectedCategory));
+                ((CollectionView)sender).SelectedItem = null;
+            }
+        }
+
+        private async void TapCartIcon_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new CartPage());
+        }
+
+        private void TapLogout_Tapped(object sender, EventArgs e)
+        {
+            Preferences.Set("accessToken", string.Empty);
+            Preferences.Set("userName", string.Empty);
+            Preferences.Set("userId", string.Empty);
+            Preferences.Set("expirationDate", string.Empty);
+
+            Application.Current.MainPage = new NavigationPage(new SignupPage());
         }
     }
 }

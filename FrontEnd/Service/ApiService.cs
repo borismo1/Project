@@ -28,6 +28,24 @@ namespace FrontEnd.Service
             return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<Category>>>(categoriesRoute);
         }
 
+
+        public async static Task<ServiceResponce<int>> AddOrder(Order order) 
+        {
+            string registerUserRoute = "/Orders/Add";
+
+            string AuthToken = Preferences.Get("accessToken", string.Empty);
+
+            ServiceResponce<int> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<int>, Order>(registerUserRoute, order, AuthToken);
+
+            return resp;
+        }
+
+        public async static Task<ServiceResponce<List<GetItemDto>>> GetProductsFromCategory(int categoryId)
+        {
+            string categoriesRoute = $"/Item/Category/{categoryId}";
+            return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<GetItemDto>>>(categoriesRoute);
+        }
+
         public static async Task<ServiceResponce<int>> RegisterUser(string username, string email, string password) 
         {
             string registerUserRoute = "/Auth/Register";
@@ -65,6 +83,7 @@ namespace FrontEnd.Service
 
                 Preferences.Set("accessToken", token.GetRawToken);
                 Preferences.Set("userName", token.Payload.UserName);
+                Preferences.Set("userId", int.Parse(token.Payload.CustomerId));
                 Preferences.Set("expirationDate", token.Payload.ExpirationDate);
             }
 

@@ -82,7 +82,7 @@ namespace BackEnd
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -96,5 +96,14 @@ namespace FrontEnd.Pages
             await Navigation.PushModalAsync(new CartPage());
         }
 
+        private void TapLogout_Tapped(object sender, EventArgs e)
+        {
+            Preferences.Set("accessToken", string.Empty);
+            Preferences.Set("userName", string.Empty);
+            Preferences.Set("userId", string.Empty);
+            Preferences.Set("expirationDate", string.Empty);
+
+            Application.Current.MainPage = new NavigationPage(new SignupPage());
+        }
     }
 }

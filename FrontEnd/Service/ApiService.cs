@@ -33,7 +33,9 @@ namespace FrontEnd.Service
         {
             string registerUserRoute = "/Orders/Add";
 
-            ServiceResponce<int> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<int>, Order>(registerUserRoute, order);
+            string AuthToken = Preferences.Get("accessToken", string.Empty);
+
+            ServiceResponce<int> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<int>, Order>(registerUserRoute, order, AuthToken);
 
             return resp;
         }
@@ -81,7 +83,7 @@ namespace FrontEnd.Service
 
                 Preferences.Set("accessToken", token.GetRawToken);
                 Preferences.Set("userName", token.Payload.UserName);
-                Preferences.Set("userId", token.Payload.CustomerId);
+                Preferences.Set("userId", int.Parse(token.Payload.CustomerId));
                 Preferences.Set("expirationDate", token.Payload.ExpirationDate);
             }
 

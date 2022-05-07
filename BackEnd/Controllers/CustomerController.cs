@@ -17,12 +17,11 @@ namespace BackEnd.Controllers
         private readonly ICustomerService _customerService;
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponce<IUser>>> Get(int id) 
+        public async Task<ActionResult<ServiceResponce<IUser>>> Get() 
         {
-            //ServiceResponce<IUser> serviceResponce = new ServiceResponce<IUser>();
             int _id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-            return Ok(await _customerService.GetCustomerById(id));
+            return Ok(await _customerService.GetCustomerById(_id));
         }
 
         public CustomerController(ICustomerService customerService)

@@ -181,21 +181,6 @@
                                Margin="20,2,20,20"
                                TextColor="White" />
                     </StackLayout>
-                    <!--<StackLayout Spacing="30"
-                                     Orientation="Horizontal"
-                                     Margin="20,0,0,0">
-                        <Image Source="order.png"
-                                   HeightRequest="30"
-                                   WidthRequest="30" />
-                        <Label Text="My Orders"
-                               TextColor="#2C2C2C"
-                                   HeightRequest="50"
-                                   VerticalTextAlignment="Center"
-                                   FontSize="20" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapOrders" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>-->
                     <StackLayout Spacing="30"
                                      Orientation="Horizontal"
                                      Margin="20,0,0,0">
@@ -211,21 +196,6 @@
                             <TapGestureRecognizer x:Name="TapCart" Tapped="TapCartIcon_Tapped"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <!--<StackLayout Spacing="30"
-                                     Orientation="Horizontal"
-                                     Margin="20,0,0,0">
-                        <Image Source="contact.png"
-                                   HeightRequest="30"
-                                   WidthRequest="30" />
-                        <Label Text="Contact"
-                               TextColor="#2C2C2C"
-                                   HeightRequest="50"
-                                   VerticalTextAlignment="Center"
-                                   FontSize="20" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapContact" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>-->
                     <StackLayout Spacing="30"
                                      Orientation="Horizontal"
                                      Margin="20,0,0,0">
@@ -238,7 +208,7 @@
                                    VerticalTextAlignment="Center"
                                    FontSize="20" />
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapLogout" />
+                            <TapGestureRecognizer x:Name="TapLogout" Tapped="TapLogout_Tapped"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </StackLayout>

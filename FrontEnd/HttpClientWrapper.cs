@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,13 @@ namespace FrontEnd
 
 
 
-        public static HttpClient GetHttpClientForLocalAndroidTesting() 
+        public static HttpClient GetHttpClientForLocalAndroidTesting(string AuthToken = "") 
         {
             HttpClient client = new HttpClient(GetInsecureHandler());
+
+            if (!string.IsNullOrWhiteSpace(AuthToken))
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
+
             client.BaseAddress = new Uri($"https://{LoopBackIp}:{LoopBackPort}");
             return client;
         }
@@ -36,11 +41,11 @@ namespace FrontEnd
         }
 
 
-        public async static Task<R> PostToLocalApi<R,P>(string route,P payload) 
+        public async static Task<R> PostToLocalApi<R,P>(string route,P payload, string JWT = "") 
         {
             HttpResponseMessage resp;
             StringContent content = GetStringContent(payload);
-            using (HttpClient client = GetHttpClientForLocalAndroidTesting())
+            using (HttpClient client = GetHttpClientForLocalAndroidTesting(AuthToken: JWT)) 
                 resp = await client.PostAsync(route, content);
 
             R responseBody = JsonConvert.DeserializeObject<R>(await resp.Content.ReadAsStringAsync());
@@ -48,10 +53,10 @@ namespace FrontEnd
             return responseBody;
         }
 
-        public async static Task<R> GetFromLocalApi<R>(string route)
+        public async static Task<R> GetFromLocalApi<R>(string route, string JWT = "")
         {
             HttpResponseMessage resp;
-            using (HttpClient client = GetHttpClientForLocalAndroidTesting())
+            using (HttpClient client = GetHttpClientForLocalAndroidTesting(AuthToken: JWT))
                 resp = await client.GetAsync(route);
 
             R responseBody = JsonConvert.DeserializeObject<R>(await resp.Content.ReadAsStringAsync());

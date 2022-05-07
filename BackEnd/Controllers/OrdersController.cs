@@ -1,11 +1,13 @@
 ﻿using BackEnd.Model;
 using BackEnd.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace BackEnd.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase

@@ -11,14 +11,10 @@ namespace BackEnd
         public AutoMapperProfile()
         {
             CreateMap<Customer, GetCustomerDto>();
-            CreateMap<Customer, AddCustomerDto>();
-            CreateMap<Customer, UpdateCustomerDto>();
             CreateMap<Customer, LoginCustomerDto>();
             CreateMap<Customer, RegisterCustomerDto>();
 
             CreateMap<Item, GetItemDto>();
-
-            CreateMap<Order, FronEndOrderDto>();
         }
 
     }

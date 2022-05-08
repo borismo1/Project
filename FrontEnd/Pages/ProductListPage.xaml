@@ -53,7 +53,7 @@
                                    HeightRequest="120" Source="{Binding Image}"/>
                                     <Label TextColor="#2C2C2C" 
                                            Text="{Binding Name}"/>
-                                    <Label TextColor="#FA6400" 
+                                    <Label TextColor="#28B7EF" 
                                            Text="{Binding Price,StringFormat = $'{0}'}"/>
                                 </StackLayout>
                             </Frame>

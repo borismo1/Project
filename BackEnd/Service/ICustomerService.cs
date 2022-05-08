@@ -12,6 +12,6 @@ namespace BackEnd.Service
 
         Task<ServiceResponce<GetCustomerDto>> GetCustomerById(int id);
 
-        Task<ServiceResponce<bool>> DeleteCustomer(Guid id);
+        Task<ServiceResponce<int>> DeleteCustomerById(int id);
     }
 }

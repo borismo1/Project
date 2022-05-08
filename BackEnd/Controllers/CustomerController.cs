@@ -2,7 +2,6 @@
 using BackEnd.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -22,6 +21,13 @@ namespace BackEnd.Controllers
             int _id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
             return Ok(await _customerService.GetCustomerById(_id));
+        }
+
+        [HttpDelete("Delete/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<ServiceResponce<int>>> DeleteCustomer(int id)
+        {
+            return Ok(await _customerService.DeleteCustomerById(id));
         }
 
         public CustomerController(ICustomerService customerService)

@@ -98,12 +98,13 @@ namespace BackEnd.Data
             }
         }
 
-        private string CreateToken(Customer customer) 
+        private string CreateToken(IUser user) 
         {
             List<Claim> claims = new List<Claim>() 
             {
-                 new Claim(ClaimTypes.NameIdentifier, customer.Id.ToString()),
-                 new Claim(ClaimTypes.Name, customer.Username)
+                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                 new Claim(ClaimTypes.Name, user.Username),
+                 new Claim(ClaimTypes.Role, user.GetType().Name),
             };
 
             SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
@@ -121,5 +122,54 @@ namespace BackEnd.Data
             return tokenHandler.WriteToken(token);
         }
 
+        public async Task<ServiceResponce<int>> RegisterAdmin(Administrator admin, string password)
+        {
+            ServiceResponce<int> serviceResponce = new ServiceResponce<int>();
+
+            if (AdminExists(admin.Username).Result.Data == true)
+            {
+                serviceResponce.Success = false;
+                serviceResponce.Message = "User already exists.";
+                return serviceResponce;
+            }
+
+            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            admin.PasswordHash = passwordHash;
+            admin.PasswordSalt = passwordSalt;
+            _context.Administrators.Add(admin);
+            await _context.SaveChangesAsync();
+            serviceResponce.Data = admin.Id;
+            return serviceResponce;
+        }
+
+        public async Task<ServiceResponce<string>> LoginAdmin(string username, string password)
+        {
+            ServiceResponce<string> responce = new ServiceResponce<string>();
+            Administrator admin = await _context.Administrators.FirstOrDefaultAsync(c => c.Username.ToLower().Equals(username.ToLower()));
+            if (admin == null)
+            {
+                responce.Success = false;
+                responce.Message = "Admin not found.";
+            }
+            else if (!VerifyPasswordHash(password, admin.PasswordHash, admin.PasswordSalt))
+            {
+                responce.Success = false;
+                responce.Message = "Wrong password.";
+            }
+            else
+            {
+                responce.Data = CreateToken(admin);
+            }
+
+            return responce;
+        }
+
+        public async Task<ServiceResponce<bool>> AdminExists(string username)
+        {
+            if (await _context.Administrators.AnyAsync(c => c.Username.ToLower().Equals(username.ToLower())))
+                return new ServiceResponce<bool>() { Data = true };
+
+            return new ServiceResponce<bool>() { Data = false };
+        }
     }
 }

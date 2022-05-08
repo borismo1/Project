@@ -64,6 +64,17 @@ namespace FrontEnd
             return responseBody;
         }
 
+        public async static Task<R> DeleteToLocalApi<R>(string route, string JWT = "")
+        {
+            HttpResponseMessage resp;
+            using (HttpClient client = GetHttpClientForLocalAndroidTesting(AuthToken: JWT))
+                resp = await client.DeleteAsync(route);
+
+            R responseBody = JsonConvert.DeserializeObject<R>(await resp.Content.ReadAsStringAsync());
+
+            return responseBody;
+        }
+
         //used for ignoring unsigned ssl sertificate 
         private static HttpClientHandler GetInsecureHandler() 
         {

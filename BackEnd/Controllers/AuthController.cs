@@ -1,4 +1,5 @@
 ﻿using BackEnd.Data;
+using BackEnd.DTOs.Admin;
 using BackEnd.DTOs.Customer;
 using BackEnd.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -37,11 +38,41 @@ namespace BackEnd.Controllers
             return Ok(response);
         }
 
+        [HttpPost("Admin/Register")]
+        public async Task<ActionResult<ServiceResponce<int>>> RegisterAdmin(RegisterAdminDto request)
+        {
+            var response = await _authRepo.RegisterAdmin
+            (
+                new Administrator
+                {
+                    Username = request.Username,
+                    Email = request.Email
+                },
+                request.Password
+            );
+
+            if (!response.Success)
+                return BadRequest(response);
+
+            return Ok(response);
+        }
+
 
         [HttpPost("Login")]
         public async Task<ActionResult<ServiceResponce<string>>> Login(LoginCustomerDto request)
         {
             var response = await _authRepo.Login(request.Username, request.Password);
+
+            if (!response.Success)
+                return BadRequest(response);
+
+            return Ok(response);
+        }
+
+        [HttpPost("Admin/Login")]
+        public async Task<ActionResult<ServiceResponce<string>>> LoginAdmin(LoginAdminDto request)
+        {
+            var response = await _authRepo.LoginAdmin(request.Username, request.Password);
 
             if (!response.Success)
                 return BadRequest(response);

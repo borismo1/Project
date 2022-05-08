@@ -26,10 +26,24 @@ namespace BackEnd.Service
 
         private Guid GetUserId() => Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-        public Task<ServiceResponce<bool>> DeleteCustomer(Guid id)
+        public async Task<ServiceResponce<int>> DeleteCustomerById(int id)
         {
-            //save chaneges async
-            throw new NotImplementedException();
+            ServiceResponce<int> responce = new ServiceResponce<int>();
+            Customer CustomersDb = await _dataContext.Customers.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (CustomersDb == null)
+            {
+                responce.Success = false;
+                responce.Data = id;
+                responce.Message = "Customer with that Id doesn't exist.";
+                return responce;
+            }
+
+            _dataContext.Customers.Remove(CustomersDb);
+            _dataContext.SaveChanges();
+
+            responce.Data = id;
+            return responce;
         }
 
         public async Task<ServiceResponce<List<GetCustomerDto>>> GetAllCustomers()

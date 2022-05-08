@@ -48,14 +48,16 @@ namespace FrontEnd.Service
 
         public async static Task<ServiceResponce<int>> DeleteCustomer(int id)
         {
-            string DeleteCustomerRoute = $"/Customer/Delete/{id}";
-            return await HttpClientWrapper.DeleteToLocalApi<ServiceResponce<int>>(DeleteCustomerRoute);
+            string DeleteCustomerRoute = $"/Customer/Admin/Delete/{id}";
+            string AuthToken = Preferences.Get("accessToken", string.Empty);
+            return await HttpClientWrapper.DeleteToLocalApi<ServiceResponce<int>>(DeleteCustomerRoute, AuthToken);
         }
 
         public async static Task<ServiceResponce<int>> DeleteItem(int id)
         {
-            string DeleteItemRoute = $"/Item/Delete/{id}";
-            return await HttpClientWrapper.DeleteToLocalApi<ServiceResponce<int>>(DeleteItemRoute);
+            string DeleteItemRoute = $"/Item/Admin/Delete/{id}";
+            string AuthToken = Preferences.Get("accessToken", string.Empty);
+            return await HttpClientWrapper.DeleteToLocalApi<ServiceResponce<int>>(DeleteItemRoute, AuthToken);
         }
 
         public static async Task<ServiceResponce<int>> RegisterUser(string username, string email, string password) 

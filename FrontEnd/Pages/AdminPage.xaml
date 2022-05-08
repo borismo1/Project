@@ -8,6 +8,15 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout BackgroundColor="Gray">
+            <Image Source="leftarrow.png"
+                       HeightRequest="40"
+                       Margin="20"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapBack"  Tapped="TapBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
             <Image Source="shape.png"
                    HorizontalOptions="CenterAndExpand"
                    HeightRequest="200" 

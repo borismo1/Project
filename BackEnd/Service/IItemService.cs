@@ -13,6 +13,6 @@ namespace BackEnd.Service
 
         Task<ServiceResponce<List<GetItemDto>>> GetCategoryItems(int category);
 
-        Task<ServiceResponce<List<int>>> DeleteItemById(int id);
+        Task<ServiceResponce<int>> DeleteItemById(int id);
     }
 }

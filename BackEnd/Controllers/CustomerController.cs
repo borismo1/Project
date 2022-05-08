@@ -23,7 +23,7 @@ namespace BackEnd.Controllers
             return Ok(await _customerService.GetCustomerById(_id));
         }
 
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Admin/Delete/{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<ServiceResponce<int>>> DeleteCustomer(int id)
         {

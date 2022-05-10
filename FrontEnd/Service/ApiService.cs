@@ -46,6 +46,20 @@ namespace FrontEnd.Service
             return await HttpClientWrapper.GetFromLocalApi<ServiceResponce<List<GetItemDto>>>(categoriesRoute);
         }
 
+        public async static Task<ServiceResponce<int>> DeleteCustomer(int id)
+        {
+            string DeleteCustomerRoute = $"/Customer/Admin/Delete/{id}";
+            string AuthToken = Preferences.Get("accessToken", string.Empty);
+            return await HttpClientWrapper.DeleteToLocalApi<ServiceResponce<int>>(DeleteCustomerRoute, AuthToken);
+        }
+
+        public async static Task<ServiceResponce<int>> DeleteItem(int id)
+        {
+            string DeleteItemRoute = $"/Item/Admin/Delete/{id}";
+            string AuthToken = Preferences.Get("accessToken", string.Empty);
+            return await HttpClientWrapper.DeleteToLocalApi<ServiceResponce<int>>(DeleteItemRoute, AuthToken);
+        }
+
         public static async Task<ServiceResponce<int>> RegisterUser(string username, string email, string password) 
         {
             string registerUserRoute = "/Auth/Register";
@@ -58,6 +72,24 @@ namespace FrontEnd.Service
             };
 
             ServiceResponce<int> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<int>, RegisterCustomerDto>(registerUserRoute,customer);
+            if (resp.Success)
+                Preferences.Set("userName", username);
+
+            return resp;
+        }
+
+        public static async Task<ServiceResponce<int>> RegisterAdmin(string username, string email, string password)
+        {
+            string registerUserRoute = "/Auth/Admin/Register";
+
+            Administrator admin = new Administrator()
+            {
+                Username = username,
+                Email = email,
+                Password = password
+            };
+
+            ServiceResponce<int> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<int>, Administrator>(registerUserRoute, admin);
             if (resp.Success)
                 Preferences.Set("userName", username);
 
@@ -85,12 +117,40 @@ namespace FrontEnd.Service
                 Preferences.Set("userName", token.Payload.UserName);
                 Preferences.Set("userId", int.Parse(token.Payload.CustomerId));
                 Preferences.Set("expirationDate", token.Payload.ExpirationDate);
+                Preferences.Set("role", token.Payload.Role);
+
             }
 
             return resp;
         }
 
+        public static async Task<ServiceResponce<string>> LoginAdmin(string username, string password)
+        {
+            string loginUserRoute = "/Auth/Admin/Login";
 
+            Administrator admin = new Administrator()
+            {
+                Username = username,
+                Password = password
+            };
+
+            ServiceResponce<string> resp = await HttpClientWrapper.PostToLocalApi<ServiceResponce<string>, Administrator>(loginUserRoute, admin);
+
+            if (resp.Success)
+            {
+
+                JsonWebToken token = new JsonWebToken(resp.Data);
+
+                Preferences.Set("accessToken", token.GetRawToken);
+                Preferences.Set("userName", token.Payload.UserName);
+                Preferences.Set("userId", int.Parse(token.Payload.CustomerId));
+                Preferences.Set("expirationDate", token.Payload.ExpirationDate);
+                Preferences.Set("role", token.Payload.Role);
+
+            }
+
+            return resp;
+        }
 
     }
 }

@@ -9,8 +9,9 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Image Source="shape.png"
-                   HorizontalOptions="EndAndExpand"
-                   HeightRequest="200" />
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="200" 
+                   Margin="0,20,0,0"/>
             <Label Text="Create Account"
                    FontAttributes="Bold"
                    FontSize="Title"
@@ -27,12 +28,22 @@
                    Margin="20,10,20,10"
                    x:Name="EntPassword"
                    IsPassword="True" />
+            <StackLayout Orientation="Horizontal">
+                <CheckBox Margin="20,0,0,20"  
+                   IsChecked="False" 
+                   x:Name="IsAdmin"
+                   Color="#2C2C2C"/>
+                <Label Text="Administrator"
+                   FontSize="Medium"
+                   TextColor="#2C2C2C"
+                   Margin="0,5,0,20" />
+            </StackLayout>
             <Grid Margin="20,40,20,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5.5*" />
                     <ColumnDefinition Width="4.5*" />
                 </Grid.ColumnDefinitions>
-                <Frame BackgroundColor="#FA6400"
+                <Frame BackgroundColor="#28B7EF"
                        Grid.Column="1"
                        Padding="15"
                        CornerRadius="35">
@@ -60,7 +71,7 @@
                               FontSize="Small"
                               TextColor="#2C2C2C" />
                         <Span Text=" Sign in "
-                              TextColor="#FA6400"
+                              TextColor="#28B7EF"
                               FontSize="Small">
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="SpanSignin" Tapped="SpanSignin_Tapped" />

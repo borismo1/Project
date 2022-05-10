@@ -1,0 +1,13 @@
+@startuml
+class HttpClientWrapper <<static>> {
+    - {static} <<readonly>> LoopBackIp : string = "10.0.2.2"
+    - {static} <<readonly>> LoopBackPort : string = "44319"
+    + {static} GetHttpClientForLocalAndroidTesting(AuthToken:string) : HttpClient
+    + {static} GetHttpForiOSLocalTesting() : HttpClient
+    + {static} GetStringContent(source:object) : StringContent
+    + <<async>> {static} PostToLocalApi(route:string, payload:P, JWT:string) : Task<R>
+    + <<async>> {static} GetFromLocalApi(route:string, JWT:string) : Task<R>
+    + <<async>> {static} DeleteToLocalApi(route:string, JWT:string) : Task<R>
+    - {static} GetInsecureHandler() : HttpClientHandler
+}
+@enduml

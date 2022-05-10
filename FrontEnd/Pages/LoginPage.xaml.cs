@@ -32,7 +32,13 @@ namespace FrontEnd.Pages
 
         private async void TapLogin_Tapped(object sender, EventArgs e)
         {
-            ServiceResponce<string> resp = await ApiService.LoginUser(EntUserName.Text, EntPassword.Text);
+            ServiceResponce<string> resp;
+
+            if (IsAdmin.IsChecked)
+                resp = await ApiService.LoginAdmin(EntUserName.Text, EntPassword.Text);
+            else
+                resp = await ApiService.LoginUser(EntUserName.Text, EntPassword.Text);
+
 
             if (!resp.Success)
                 await DisplayAlert("Failure", resp.Message, "Ok");
@@ -40,7 +46,11 @@ namespace FrontEnd.Pages
             else 
             {
                 ShoppingCart.Items = new List<ShoppingCartItemDto>();
-                Application.Current.MainPage = new NavigationPage(new HomePage());
+
+                if (IsAdmin.IsChecked)
+                    Application.Current.MainPage = new NavigationPage(new AdminPage());
+                else
+                    Application.Current.MainPage = new NavigationPage(new HomePage());
             }
             
         }

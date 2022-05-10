@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-namespace BackEnd.DTOs.Customer
+﻿namespace BackEnd.DTOs.Admin
 {
-    public class RegisterCustomerDto
+    public class RegisterAdminDto
     {
         public string Username { get; set; }
 

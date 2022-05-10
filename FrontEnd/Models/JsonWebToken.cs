@@ -47,6 +47,9 @@ namespace FrontEnd.Models
         [JsonProperty("unique_name")]
         public string UserName { get; set; }
 
+        [JsonProperty("role")]
+        public string Role { get; set; }
+
         [JsonConverter(typeof(UnixDateTimeConverter))]
         [JsonProperty("nbf")]
         public DateTime NotValidBefore { get; set; }

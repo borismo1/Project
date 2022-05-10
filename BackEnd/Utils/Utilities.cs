@@ -47,7 +47,6 @@ namespace BackEnd.Utils
             {
                 Category cat = new Category()
                 {
-                    //Id = KeyValuePair.Value,
                     Name = Path.GetFileNameWithoutExtension(KeyValuePair.Key),
                     ImageBytes = File.ReadAllBytes(KeyValuePair.Key)
                 };

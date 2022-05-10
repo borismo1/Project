@@ -12,10 +12,17 @@ namespace FrontEnd
         {
             InitializeComponent();
             string accessToken = Preferences.Get("accessToken", string.Empty);
+            string role = Preferences.Get("role", string.Empty);
+
             if (string.IsNullOrWhiteSpace(accessToken))
                 MainPage = new NavigationPage(new SignupPage());
             else
-                MainPage = new NavigationPage( new HomePage());
+            {
+                if (role == "Administrator")
+                    MainPage = new NavigationPage(new AdminPage());
+                else
+                    MainPage = new NavigationPage(new HomePage());
+            }
         }
 
         protected override void OnStart()

@@ -52,7 +52,7 @@
                 </StackLayout>
             </Frame>
             <Button CornerRadius="25" Text="Place My Order"
-                    BackgroundColor="#FA6400"
+                    BackgroundColor="#28B7EF"
                     TextColor="White"
                     x:Name="BtnPlaceOrder" 
                     Clicked="BtnPlaceOrder_Clicked"/>

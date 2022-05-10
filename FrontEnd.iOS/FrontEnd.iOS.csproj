@@ -146,9 +146,6 @@
     <BundleResource Include="Resources\carticon.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\contact.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\leftarrow.png" />
   </ItemGroup>
   <ItemGroup>
@@ -159,9 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\minus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\order.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\plus.png" />

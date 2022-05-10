@@ -26,21 +26,24 @@ namespace BackEnd.Service
 
         private Guid GetUserId() => Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-        public async Task<ServiceResponce<GetCustomerDto>> AddCustomer(AddCustomerDto newCusomter)
+        public async Task<ServiceResponce<int>> DeleteCustomerById(int id)
         {
-            ServiceResponce<GetCustomerDto> responce = new ServiceResponce<GetCustomerDto>();
-            Customer CustomersDb = _mapper.Map<Customer>(newCusomter);
-            //check return type, maybe we can use for sevice responce
-            await _dataContext.AddAsync(CustomersDb);
-            CustomersDb = await _dataContext.Customers.FirstOrDefaultAsync(c => c.Id == CustomersDb.Id);
-            responce.Data = _mapper.Map<GetCustomerDto>(CustomersDb);
-            return responce;
-        }
+            ServiceResponce<int> responce = new ServiceResponce<int>();
+            Customer CustomersDb = await _dataContext.Customers.FirstOrDefaultAsync(c => c.Id == id);
 
-        public Task<ServiceResponce<bool>> DeleteCustomer(Guid id)
-        {
-            //save chaneges async
-            throw new NotImplementedException();
+            if (CustomersDb == null)
+            {
+                responce.Success = false;
+                responce.Data = id;
+                responce.Message = "Customer with that Id doesn't exist.";
+                return responce;
+            }
+
+            _dataContext.Customers.Remove(CustomersDb);
+            _dataContext.SaveChanges();
+
+            responce.Data = id;
+            return responce;
         }
 
         public async Task<ServiceResponce<List<GetCustomerDto>>> GetAllCustomers()
@@ -59,10 +62,5 @@ namespace BackEnd.Service
             return responce;
         }
 
-        public Task<ServiceResponce<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto updatedCustomer)
-        {
-            //save chaneges async
-            throw new NotImplementedException();
-        }
     }
 }

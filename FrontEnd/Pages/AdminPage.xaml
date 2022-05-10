@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FrontEnd.Pages.AdminPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Gray">
+            <Image Source="leftarrow.png"
+                       HeightRequest="40"
+                       Margin="20"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapBack"  Tapped="TapBack_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="shape.png"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="200" 
+                   Margin="0,20,0,0"/>
+            <Label Text="Administration Page"
+                   FontAttributes="Bold"
+                   FontSize="Title"
+                   TextColor="#2C2C2C"
+                   Margin="20" />
+            <Frame BackgroundColor="#28B7EF"
+                       Grid.Column="1"
+                       Padding="15"
+                       CornerRadius="35">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Delete User"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="Medium"
+                               VerticalOptions="Center"
+                               TextColor="#2C2C2C" />
+                    <Entry Placeholder="User Id"
+                               Margin="20,10,20,10"
+                               x:Name="EntUserId"
+                               Keyboard="Numeric" />
+                    <Image Source="rightarrow.png"
+                               HorizontalOptions="CenterAndExpand"
+                               HeightRequest="30" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapDeleteUser" Tapped="TapDeleteUser_Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Frame BackgroundColor="#28B7EF"
+                       Grid.Column="1"
+                       Padding="15"
+                       CornerRadius="35">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Delete Item"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="Medium"
+                               VerticalOptions="Center"
+                               TextColor="#2C2C2C" />
+                    <Entry Placeholder="Item Id"
+                               Margin="20,10,20,10"
+                               x:Name="EntItemId"
+                               Keyboard="Numeric" />
+                    <Image Source="rightarrow.png"
+                               HorizontalOptions="CenterAndExpand"
+                               HeightRequest="30" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapDeleteItem" Tapped="TapDeleteItem_Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Grid Margin="20,40,20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5.5*" />
+                    <ColumnDefinition Width="4.5*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

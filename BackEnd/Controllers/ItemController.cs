@@ -1,6 +1,7 @@
 ﻿using BackEnd.DTOs.Item;
 using BackEnd.Model;
 using BackEnd.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -34,6 +35,13 @@ namespace BackEnd.Controllers
         public async Task<ActionResult<ServiceResponce<List<GetItemDto>>>> GetItemsFromCategory()
         {
             return Ok(await _itemService.GetTrandingItems());
+        }
+
+        [HttpDelete("Admin/Delete/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<ServiceResponce<int>>> DeleteItem(int id)
+        {
+            return Ok(await _itemService.DeleteItemById(id));
         }
 
     }

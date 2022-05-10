@@ -78,7 +78,7 @@
                                                FontSize="Medium" 
                                                Text="{Binding Price}"/>
                                         <Label CharacterSpacing="1"
-                                               TextColor="#FA6400"
+                                               TextColor="#28B7EF"
                                                FontSize="Medium"
                                                HorizontalOptions="EndAndExpand" 
                                                Text="{Binding TotalPrice}"/>
@@ -98,15 +98,15 @@
                            FontSize="Medium" />
                     <StackLayout Orientation="Horizontal">
                         <Label x:Name="LblTotalPrice"
-                               TextColor="#FA6400"
+                               TextColor="#28B7EF"
                                FontSize="Medium" />
                         <Label Text="$"
-                               TextColor="#FA6400"
+                               TextColor="#28B7EF"
                                FontSize="Medium" />
                     </StackLayout>
                 </StackLayout>
                 <Button HorizontalOptions="FillAndExpand"
-                        BackgroundColor="#FA6400"
+                        BackgroundColor="#28B7EF"
                         TextColor="White"
                         Text="Proceed"
                         x:Name="BtnProceed"

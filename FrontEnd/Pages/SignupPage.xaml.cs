@@ -21,7 +21,11 @@ namespace FrontEnd.Pages
 
         private async void TapSignup_Tapped(object sender, EventArgs e)
         {
-            ServiceResponce<int> resp = await ApiService.RegisterUser(EntUsername.Text,EntEmail.Text,EntPassword.Text);
+            ServiceResponce<int> resp;
+            if (IsAdmin.IsChecked)
+                resp = await ApiService.RegisterAdmin(EntUsername.Text, EntEmail.Text, EntPassword.Text);
+            else
+                resp = await ApiService.RegisterUser(EntUsername.Text,EntEmail.Text,EntPassword.Text);
 
             if (!resp.Success)
                 await DisplayAlert("Failure", resp.Message, "Ok");

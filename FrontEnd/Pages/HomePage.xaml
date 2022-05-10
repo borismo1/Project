@@ -63,7 +63,7 @@
                            Grid.Row="0"
                            Grid.Column="1"
                            Grid.RowSpan="2"
-                           BackgroundColor="#FA6400">
+                           BackgroundColor="#28B7EF">
                         <Label x:Name="LblTotalItems"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
@@ -150,7 +150,7 @@
                                                Source ="{Binding Image}"/>
                                         <Label TextColor="#2C2C2C"
                                                Text="{Binding Name}"/>
-                                        <Label TextColor="#FA6400"
+                                        <Label TextColor="#28B7EF"
                                                Text="{Binding Price, StringFormat=$'{0}'}"/>
                                     </StackLayout>
                                 </Frame>
@@ -169,7 +169,7 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout BackgroundColor="White"
                                  x:Name="SlMenu">
-                    <StackLayout BackgroundColor="#FA6400"
+                    <StackLayout BackgroundColor="#28B7EF"
                                  VerticalOptions="Center"
                                  Spacing="0"
                                  Margin="0">
